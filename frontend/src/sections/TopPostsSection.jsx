@@ -19,6 +19,7 @@ export default function TopPostsSection() {
     [TOP_POSTS_LIMIT],
   );
 
+  // backend returns posts already sorted by comment count, just add the display rank
   const rankedRows = data?.map((row, index) => ({ ...row, rank: index + 1 }));
 
   return (

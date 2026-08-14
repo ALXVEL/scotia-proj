@@ -5,6 +5,8 @@ import { colors, radius, shadow, spacing } from "../../theme";
 export default function DonutChart({ segments, centerLabel }) {
   const total = segments.reduce((sum, segment) => sum + segment.value, 0);
 
+  // build each segment's "color start% end%" stop, chaining off the previous end
+  // this is what makes the donut chart actually work
   let cumulativePct = 0;
   const stops = segments.map((segment) => {
     const pct = total > 0 ? (segment.value / total) * 100 : 0;

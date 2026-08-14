@@ -43,6 +43,7 @@ async def fetch_todos(client: httpx.AsyncClient) -> list[Todo]:
 
 async def fetch_source_data() -> SourceData:
     try:
+        # gather runs all four requests concurrently instead of one after another
         async with httpx.AsyncClient(timeout=API_REQUEST_TIMEOUT_SECONDS) as client:
             users, posts, comments, todos = await asyncio.gather(
                 fetch_users(client), fetch_posts(client),
@@ -50,5 +51,6 @@ async def fetch_source_data() -> SourceData:
             )
         return SourceData(users=users, posts=posts, comments=comments, todos=todos)
     except Exception as exc:
+        # any single failed/slow endpoint fails the whole request, no partial data
         logger.error("Failed to fetch data from JSONPlaceholder: %s", exc)
         raise HTTPException(status_code=502, detail="Failed to fetch data from upstream API")

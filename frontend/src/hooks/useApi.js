@@ -8,6 +8,7 @@ export function useApi(fetcher, deps = []) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    // guards against setting state after the component unmounts or deps change mid-fetch
     let cancelled = false;
 
     setLoading(true);
