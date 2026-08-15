@@ -1,3 +1,4 @@
+# Requires Python 3.10+ (fastapi and uvicorn drop support for older versions)
 fastapi
 uvicorn[standard]
 httpx
