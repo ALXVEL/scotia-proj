@@ -11,7 +11,7 @@ A FastAPI backend that ingests public data from [JSONPlaceholder](https://jsonpl
 
 ```
 pip install -r requirements.txt
-uvicorn backend.main:app --reload
+python -m uvicorn backend.main:app --reload
 ```
 
 Runs on `http://localhost:8000` by default.
